@@ -9,22 +9,22 @@ class App extends Component {
     contacts: [
       {
         id: 'id-1',
-        name: 'Rosie Simpson',
+        name: 'Dwayne Johnson',
         number: '459-12-56',
       },
       {
         id: 'id-2',
-        name: 'Hermione Kline',
+        name: 'Mike Tyson',
         number: '443-89-12',
       },
       {
         id: 'id-3',
-        name: 'Eden Clements',
+        name: 'Homer Simpson',
         number: '645-17-79',
       },
       {
         id: 'id-4',
-        name: 'Annie Copeland',
+        name: 'Bruce Lee',
         number: '227-91-26',
       },
     ],
@@ -38,16 +38,26 @@ class App extends Component {
       name,
       number,
     };
+    const isItDuplicate = this.checkForUniqueness(name);
 
-    this.setState(prevState => {
-      return {
-        contacts: [...prevState.contacts, contact],
-      };
-    });
+    isItDuplicate
+      ? alert(`contact of ${name} is already exist!!!`)
+      : this.setState(prevState => {
+          return {
+            contacts: [...prevState.contacts, contact],
+          };
+        });
+  };
+
+  checkForUniqueness = newName => {
+    const { contacts } = this.state;
+    const check = contacts
+      .map(({ name }) => name.toLowerCase())
+      .includes(newName.toLowerCase());
+    return check ? true : false;
   };
 
   clearContact = contactId => {
-    console.log(contactId);
     this.setState(prevState => {
       return {
         contacts: prevState.contacts.filter(
