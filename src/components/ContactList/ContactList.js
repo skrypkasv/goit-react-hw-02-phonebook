@@ -1,6 +1,6 @@
 import React from 'react';
 import Contact from './Contact/Contact';
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 export default function ContactList({
   contacts,
@@ -17,3 +17,8 @@ export default function ContactList({
     </div>
   );
 }
+
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  onClearContact: PropTypes.func.isRequired,
+};

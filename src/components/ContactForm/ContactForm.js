@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types'
-import s from './ContactForm.module.css';
+import PropTypes from 'prop-types';
+import styles from './ContactForm.module.css';
 
 export default class ContactForm extends Component {
+  static propTypes = {
+    onAddContact: PropTypes.func.isRequired,
+  };
+
   state = {
     name: '',
     number: '',
@@ -15,7 +19,9 @@ export default class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onAddContact(this.state);
+    this.state.name.trim().length > 0
+      ? this.props.onAddContact(this.state)
+      : alert('unable to add empty field!!!');
     this.resetInputs();
   };
 
@@ -30,9 +36,10 @@ export default class ContactForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          <span className={s.label}>Name</span>
+          <span className={styles.label}>Name</span>
           <input
             type="text"
+            required
             placeholder="John Snow"
             value={this.state.name}
             onChange={this.handleChange}
@@ -41,17 +48,21 @@ export default class ContactForm extends Component {
         </label>
 
         <label>
-          <span className={s.label}>Number</span>
+          <span className={styles.label}>Number</span>
           <input
-            type="text"
-            placeholder="000-00-00"
+            type="number"
+            required
+            placeholder="+00-000-000-00-00"
+            maxlength="13"
             value={this.state.number}
             onChange={this.handleChange}
             name="number"
           ></input>
         </label>
 
-        <button type="submit">Add contact</button>
+        <button type="submit" className={styles.btn_submit}>
+          Add contact
+        </button>
       </form>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Section from './components/Section/Section';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
@@ -6,28 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 class App extends Component {
   state = {
-    contacts: [
-      {
-        id: 'id-1',
-        name: 'Dwayne Johnson',
-        number: '459-12-56',
-      },
-      {
-        id: 'id-2',
-        name: 'Mike Tyson',
-        number: '443-89-12',
-      },
-      {
-        id: 'id-3',
-        name: 'Homer Simpson',
-        number: '645-17-79',
-      },
-      {
-        id: 'id-4',
-        name: 'Bruce Lee',
-        number: '227-91-26',
-      },
-    ],
+    contacts: [],
     filter: '',
   };
 
@@ -86,19 +66,26 @@ class App extends Component {
 
     return (
       <div className="container">
-        <h2>Phonebook</h2>
+        <Section title="Phonebook">
+          <ContactForm onAddContact={this.addContact} />
+        </Section>
 
-        <ContactForm onAddContact={this.addContact} />
-        <h2>Contacts</h2>
-
-        <Filter
-          value={filter}
-          onUpdateFilter={this.updateFilter}
-        />
-        <ContactList
-          contacts={filteredContacts}
-          onClearContact={this.clearContact}
-        />
+        {this.state.contacts.length > 1 && (
+          <Section>
+            <Filter
+              value={filter}
+              onUpdateFilter={this.updateFilter}
+            />
+          </Section>
+        )}
+        {this.state.contacts.length > 0 && (
+          <Section title="Contacts:">
+            <ContactList
+              contacts={filteredContacts}
+              onClearContact={this.clearContact}
+            />
+          </Section>
+        )}
       </div>
     );
   }

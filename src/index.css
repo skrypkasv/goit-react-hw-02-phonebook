@@ -1,10 +1,6 @@
 @import-normalize;
 
 /* rest of app styles */
-:root {
-  --shadow: 0px 10px 13px -7px #000000,
-    2px 6px 14px 7px rgba(0, 0, 0, 0.33);
-}
 
 *,
 *::before,
@@ -19,7 +15,7 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e0a5e7;
+  background-color: #fffacd;
 }
 
 code {
@@ -28,7 +24,8 @@ code {
 }
 
 .container {
-  width: 700px;
+  width: 500px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
@@ -40,11 +37,11 @@ code {
 }
 
 ul {
-  /* list-style: none; */
+  list-style: none;
   box-sizing: content-box;
-  width: 30%;
+  width: 400px;
   margin: 0 auto;
   padding: 10px;
   text-align: start;
-  background-color: #c6d9f1;
+  /* background-color: #c6d9f1; */
 }
