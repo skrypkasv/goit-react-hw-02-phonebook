@@ -12,9 +12,15 @@ export default class ContactForm extends Component {
     number: '',
   };
 
-  handleChange = e => {
+  handleChangeName = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+  };
+
+  handleChangeNumber = e => {
+    const { name, value, maxLength } = e.target;
+    const phoneNumber = value.slice(0, maxLength);
+    this.setState({ [name]: phoneNumber });
   };
 
   handleSubmit = e => {
@@ -42,7 +48,7 @@ export default class ContactForm extends Component {
             required
             placeholder="John Snow"
             value={this.state.name}
-            onChange={this.handleChange}
+            onChange={this.handleChangeName}
             name="name"
           ></input>
         </label>
@@ -53,9 +59,9 @@ export default class ContactForm extends Component {
             type="number"
             required
             placeholder="+00-000-000-00-00"
-            maxlength="13"
+            maxLength="13"
             value={this.state.number}
-            onChange={this.handleChange}
+            onChange={this.handleChangeNumber}
             name="number"
           ></input>
         </label>
