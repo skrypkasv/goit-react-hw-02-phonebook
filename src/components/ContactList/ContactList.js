@@ -9,10 +9,15 @@ export default function ContactList({
   return (
     <div>
       <ul>
-        <Contact
-          list={contacts}
-          onDelContact={onClearContact}
-        />
+        {contacts.map(({ id, name, number }) => (
+          <Contact
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            onDelContact={onClearContact}
+          />
+        ))}
       </ul>
     </div>
   );
